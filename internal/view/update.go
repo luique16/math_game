@@ -11,21 +11,13 @@ func (v *View) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				case "ctrl+c", "q":
 					return v, tea.Quit
 				case "up", "k":
-					if v.CursorY < v.Game.Rows - 1 {
-						v.CursorY++
-					}
+					v.CursorY = max(0, v.CursorY - 1)
 				case "down", "j":
-					if v.CursorY > 0 {
-						v.CursorY--
-					}
+					v.CursorY = min(v.Game.Rows - 1, v.CursorY + 1)
 				case "left", "h":
-					if v.CursorX > 0 {
-						v.CursorX--
-					}
+					v.CursorX = max(0, v.CursorX - 1)
 				case "right", "l":
-					if v.CursorX < v.Game.Cols - 1 {
-						v.CursorX++
-					}
+					v.CursorX = min(v.Game.Cols - 1, v.CursorX + 1)
 				case "backspace":
 					// v.Game.Erase(v.CursorX, v.CursorY)
 				case "enter":

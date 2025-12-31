@@ -20,6 +20,6 @@ func Create(game *models.Game) *View {
 	return &View{
 		Game: game,
 		CursorX: 0,
-		CursorY: game.Rows - 1,
+		CursorY: 0,
 	}
 }
