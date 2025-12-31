@@ -4,10 +4,52 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/lipgloss"
+
+	"github.com/luique16/math_game/internal/models"
 )
 
 func (v *View) View() string {
 	var print string
+
+	heartsStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#ff6961")).
+		Bold(true).
+		Margin(1).
+		Align(lipgloss.Center)
+
+	aliveHeartElementStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#ff0000")).
+		Bold(true).
+		Width(2).
+		Padding(0).
+		Align(lipgloss.Center)
+
+	deadHeartElementStyle := lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#666666")).
+		Bold(true).
+		Width(2).
+		Padding(0).
+		Align(lipgloss.Center)
+
+	var hearts []string
+
+	for range(v.Game.Lives) {
+		hearts = append(hearts, aliveHeartElementStyle.Render("❤ "))
+	}
+
+	for range(3 - v.Game.Lives) {
+		hearts = append(hearts, deadHeartElementStyle.Render("❤ "))
+	}
+
+
+	print += lipgloss.JoinHorizontal(
+		lipgloss.Top, 
+		heartsStyle.Render(
+			lipgloss.JoinHorizontal(lipgloss.Top, hearts...),
+			),
+		)
+
+	print += "\n"
 
 	colsSumStyle := lipgloss.NewStyle().
 		Foreground(lipgloss.Color("#ffffff")).
@@ -85,9 +127,15 @@ func (v *View) View() string {
 		var row []string
 		for j := range(v.Game.Cols) {
 			if v.CursorY == i && v.CursorX == j {
-				row = append(row, selectedElementStyle.Render(fmt.Sprintf("%d", v.Game.Board[i][j].Value)))
-			} else if v.Game.Board[i][j].Legit {
+				if v.Game.Board[i][j].State != models.Erased {
+					row = append(row, selectedElementStyle.Render(fmt.Sprintf("%d", v.Game.Board[i][j].Value)))
+				} else {
+					row = append(row, selectedElementStyle.Render("⚪ "))
+				}
+			} else if v.Game.Board[i][j].Legit && v.Game.Board[i][j].State == models.Selected {
 				row = append(row, legitElementStyle.Render(fmt.Sprintf("%d", v.Game.Board[i][j].Value)))
+			} else if v.Game.Board[i][j].State == models.Erased {
+				row = append(row, boardElementStyle.Render(" "))
 			} else {
 				row = append(row, boardElementStyle.Render(fmt.Sprintf("%d", v.Game.Board[i][j].Value)))
 			}
@@ -121,6 +169,14 @@ func (v *View) View() string {
 	)
 
 	print += "\n\n"
+
+	if v.Game.Lives == 0 {
+		print += "Game over!\n"
+	}
+
+	if VerifyEndGame(v.Game) {
+		print += "You win!\n"
+	}
 
 	return print
 }

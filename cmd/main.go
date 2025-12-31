@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	err, game := game.CreateGame(10, 10, 50)
+	err, game := game.CreateGame(6, 6, 50)
 
 	if err != nil {
 		fmt.Printf("Error: %s\n", err)
