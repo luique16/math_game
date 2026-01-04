@@ -19,11 +19,7 @@ func VerifyEndGame(game *models.Game) bool {
 }
 
 func (v *View) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	if v.Game.Lives == 0 {
-		return v, tea.Quit
-	}
-
-	if VerifyEndGame(v.Game) {
+	if v.Game.Lives == 0 || VerifyEndGame(v.Game) {
 		return v, tea.Quit
 	}
 

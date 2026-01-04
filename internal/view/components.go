@@ -152,3 +152,13 @@ func Board(game *models.Game, cursorX, cursorY int) string {
 	return boardStyle.Render(lipgloss.JoinVertical(lipgloss.Right, boardRows...))
 }
 
+func ControlsBar() string {
+	style := lipgloss.NewStyle().
+		Padding(0, 1).
+		Foreground(lipgloss.Color("#666666")).
+		MarginTop(1)
+
+	return style.Render(
+		"↑↓←→ Move  •  Enter Select  •  Backspace Erase  •  Q Quit",
+	)
+}

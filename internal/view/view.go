@@ -27,6 +27,10 @@ func (v *View) View() string {
 		),
 	)
 
+	print += "\n"
+
+	print += ControlsBar()
+
 	print += "\n\n"
 
 	if v.Game.Lives == 0 {
