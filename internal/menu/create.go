@@ -10,6 +10,7 @@ type Menu struct {
 	Choices []string
 	GameModeSelected bool
 	GameMode int
+	Ready bool
 }
 
 func (v Menu) Init() tea.Cmd {
@@ -23,6 +24,7 @@ func Create() *Menu {
 		Choices: []string{"Easy", "Medium", "Hard", "Extreme"},
 		GameModeSelected: false,
 		GameMode: 0,
+		Ready: false,
 	}
 }
 

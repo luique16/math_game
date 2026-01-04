@@ -38,7 +38,8 @@ func (v *Menu) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 						v.Exit = true
 						return v, tea.Quit
 					case "enter":
-						return v, tea.Quit
+						v.Ready = true
+						return v, nil
 				}
 		}
 	}
