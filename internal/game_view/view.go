@@ -4,7 +4,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
-func (v *View) View() string {
+func (v *GameView) View() string {
 	var print string
 
 	print += lipgloss.JoinHorizontal(

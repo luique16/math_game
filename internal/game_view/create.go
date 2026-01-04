@@ -6,18 +6,18 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-type View struct {
+type GameView struct {
 	Game    *models.Game
 	CursorX int
 	CursorY int
 }
 
-func (v View) Init() tea.Cmd {
+func (v GameView) Init() tea.Cmd {
     return nil
 }
 
-func Create(game *models.Game) *View {
-	return &View{
+func Create(game *models.Game) *GameView {
+	return &GameView{
 		Game: game,
 		CursorX: 0,
 		CursorY: 0,
