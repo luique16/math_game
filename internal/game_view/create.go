@@ -1,4 +1,4 @@
-package view
+package game_view
 
 import (
 	"github.com/luique16/math_game/internal/models"

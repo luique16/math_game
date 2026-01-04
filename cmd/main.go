@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/luique16/math_game/internal/game"
-	"github.com/luique16/math_game/internal/view"
+	"github.com/luique16/math_game/internal/game_view"
 	"github.com/luique16/math_game/internal/menu"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -28,7 +28,7 @@ func main() {
 		return
 	}
 
-	app := view.Create(game)
+	app := game_view.Create(game)
 
 	p = tea.NewProgram(app)
 

@@ -1,4 +1,4 @@
-package view
+package game_view
 
 import (
 	tea "github.com/charmbracelet/bubbletea"
