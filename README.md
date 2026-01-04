@@ -1,6 +1,6 @@
 # Math Game
 
-![Example](https://github.com/luique16/math_game/blob/master/img/example.png)
+![Example](https://github.com/luique16/math_game/blob/main/img/example.png)
 
 ## Description
 
